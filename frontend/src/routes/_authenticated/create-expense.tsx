@@ -2,8 +2,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { zodValidator } from "@tanstack/zod-form-adapter";
-import { z } from "zod";
 
 import { useForm } from "@tanstack/react-form";
 import { api } from "@/lib/api";
@@ -32,7 +30,7 @@ function CreateExpense() {
     <div className="p-2">
       <h2>Create Expenses</h2>
       <form
-        className="max-w-xl mx-auto"
+        className="max-w-xl mx-auto flex flex-col"
         onSubmit={(e) => {
           e.preventDefault();
           form.handleSubmit();
@@ -41,7 +39,7 @@ function CreateExpense() {
         <form.Field
           name="title"
           children={(field) => (
-            <>
+            <div>
               <Label htmlFor={field.name}>Title</Label>
               <Input
                 type="text"
@@ -54,14 +52,14 @@ function CreateExpense() {
               {field.state.meta.touchedErrors ? (
                 <em>{field.state.meta.touchedErrors}</em>
               ) : null}
-            </>
+            </div>
           )}
         />
 
         <form.Field
           name="amount"
           children={(field) => (
-            <>
+            <div>
               <Label htmlFor={field.name}>Amount</Label>
               <Input
                 type="number"
@@ -74,7 +72,7 @@ function CreateExpense() {
               {field.state.meta.touchedErrors ? (
                 <em>{field.state.meta.touchedErrors}</em>
               ) : null}
-            </>
+            </div>
           )}
         />
 
