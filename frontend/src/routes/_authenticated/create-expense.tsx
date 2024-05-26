@@ -1,8 +1,10 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
+// const [date, setDate] = React.useState<Date | undefined>(new Date());
 import { useForm } from "@tanstack/react-form";
 import { api } from "@/lib/api";
 
@@ -16,6 +18,7 @@ function CreateExpense() {
     defaultValues: {
       title: "",
       amount: "",
+      date: new Date().toISOString(),
     },
     onSubmit: async ({ value }) => {
       console.log(value);
@@ -55,7 +58,6 @@ function CreateExpense() {
             </div>
           )}
         />
-
         <form.Field
           name="amount"
           children={(field) => (
@@ -75,7 +77,21 @@ function CreateExpense() {
             </div>
           )}
         />
-
+        <form.Field
+          name="date"
+          children={(field) => {
+            <div className="self-care">
+              <Calendar
+                mode="single"
+                selected={field.state.value}
+                onSelect={(e) => field.handleChange(e.target.value)}
+                className="rounded-md border"
+              />
+              ;
+            </div>;
+          }}
+        />
+        ;
         <form.Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
         >
