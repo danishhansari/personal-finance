@@ -15,7 +15,7 @@ function CreateExpense() {
   const form = useForm({
     defaultValues: {
       title: "",
-      amount: 0,
+      amount: "",
     },
     onSubmit: async ({ value }) => {
       console.log(value);
@@ -63,7 +63,7 @@ function CreateExpense() {
                 type="number"
                 value={field.state.value}
                 onBlur={field.handleBlur}
-                onChange={(e) => field.handleChange(Number(e.target.value))}
+                onChange={(e) => field.handleChange(e.target.value)}
                 id={field.name}
                 placeholder="Amount"
               />
