@@ -2,6 +2,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { zodValidator } from "@tanstack/zod-form-adapter";
+import { z } from "zod";
 
 import { useForm } from "@tanstack/react-form";
 import { api } from "@/lib/api";
@@ -36,8 +38,9 @@ function CreateExpense() {
           form.handleSubmit();
         }}
       >
-        <form.Field name="title">
-          {(field) => (
+        <form.Field
+          name="title"
+          children={(field) => (
             <>
               <Label htmlFor={field.name}>Title</Label>
               <Input
@@ -53,10 +56,11 @@ function CreateExpense() {
               ) : null}
             </>
           )}
-        </form.Field>
+        />
 
-        <form.Field name="amount">
-          {(field) => (
+        <form.Field
+          name="amount"
+          children={(field) => (
             <>
               <Label htmlFor={field.name}>Amount</Label>
               <Input
@@ -72,7 +76,7 @@ function CreateExpense() {
               ) : null}
             </>
           )}
-        </form.Field>
+        />
 
         <form.Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
