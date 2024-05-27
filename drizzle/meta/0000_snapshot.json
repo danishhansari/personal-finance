@@ -1,5 +1,5 @@
 {
-  "id": "21595109-0f62-427a-a3bc-019d3ba929d9",
+  "id": "8721f777-d0a1-42ed-b260-01a074cbef16",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
@@ -31,11 +31,18 @@
           "type": "numeric(12, 2)",
           "primaryKey": false,
           "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
         }
       },
       "indexes": {
-        "name_idx": {
-          "name": "name_idx",
+        "expenses_user_id_idx": {
+          "name": "expenses_user_id_idx",
           "columns": [
             "user_id"
           ],

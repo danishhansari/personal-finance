@@ -20,13 +20,16 @@ export const expenses = pgTable(
   },
   (expenses) => {
     return {
-      userIdIndex: index("name_idx").on(expenses.userId),
+      userIdIndex: index("expenses_user_id_idx").on(expenses.userId),
     };
   }
 );
 
 export const insertExpenseSchema = createInsertSchema(expenses, {
-  title: z.string().min(3, { message: "Title must be at least 3 character" }),
-  amount: z.string().regex(/^\d+(\.\d{1,2})?$/),
+  title: z.string().min(3, { message: "Title must be at least 3 characters" }),
+  amount: z.number().positive().max(9999999999.99, {
+    message: "Amount must be a valid number with up to 2 decimal places",
+  }),
 });
+
 export const selectExpenseSchema = createSelectSchema(expenses);

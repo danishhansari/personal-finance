@@ -5,3 +5,4 @@ export const expenseSchema = insertExpenseSchema.omit({
 });
 
 export const createExpenseSchema = expenseSchema.omit({ id: true });
+  
