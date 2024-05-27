@@ -9,27 +9,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { api } from "@/lib/api";
+import {
+  getAllExpensesQueryOption,
+  loadingCreateExpenseQueryOptions,
+} from "@/lib/api";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const Route = createFileRoute("/_authenticated/expenses")({
   component: Expenses,
 });
 
-async function getAllExpenses() {
-  const res = await api.expenses.$get();
-  if (!res.ok) {
-    throw new Error("Server error");
-  }
-  const data = await res.json();
-  return data;
-}
-
 function Expenses() {
-  const { isPending, error, data } = useQuery({
-    queryKey: ["get-all-expenses"],
-    queryFn: getAllExpenses,
-  });
+  const { isPending, error, data } = useQuery(getAllExpensesQueryOption);
+  const { data: loadingCreateExpense } = useQuery(
+    loadingCreateExpenseQueryOptions
+  );
 
   if (error) return "An error has occured" + error.message;
   return (
@@ -44,6 +38,15 @@ function Expenses() {
           </TableRow>
         </TableHeader>
         <TableBody>
+          {loadingCreateExpense?.expense && (
+            <TableRow>
+              <TableCell className="font-medium">
+                <Skeleton className="h-4" />
+              </TableCell>
+              <TableCell>{loadingCreateExpense?.expense.title}</TableCell>
+              <TableCell>{loadingCreateExpense?.expense.amount}</TableCell>
+            </TableRow>
+          )}
           {isPending
             ? Array(3)
                 .fill(0)

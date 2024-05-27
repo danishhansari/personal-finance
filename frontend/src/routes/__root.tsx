@@ -4,7 +4,7 @@ import {
   Link,
   Outlet,
 } from "@tanstack/react-router";
-
+import { Toaster } from "@/components/ui/sonner";
 interface MyRouteContext {
   queryClient: QueryClient;
 }
@@ -34,7 +34,6 @@ const Navbar = () => {
             Profile
           </Link>
         </div>
-
       </div>
     </>
   );
@@ -48,6 +47,7 @@ function Root() {
       <div className="p-2 max-w-2xl m-auto">
         <Outlet />
       </div>
+      <Toaster />
     </>
   );
 }

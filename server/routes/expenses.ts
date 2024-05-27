@@ -45,10 +45,11 @@ export const expenseRoute = new Hono()
     const result = await db
       .insert(expenseTable)
       .values(validatedExpense)
-      .returning();
+      .returning()
+      .then((res) => res[0]);
 
     c.status(201);
-    return c.json({ result });
+    return c.json(result);
   })
   .get("/:id{[0-9]+}", getUser, async (c) => {
     const id = Number.parseInt(c.req.param("id"));
