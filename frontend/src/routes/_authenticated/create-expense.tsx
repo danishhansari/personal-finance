@@ -34,16 +34,14 @@ function CreateExpense() {
       });
       try {
         const newExpense = await createExpense({ value });
-
+        
         queryClient.setQueryData(getAllExpensesQueryOption.queryKey, {
           ...existingExpenses,
           expenses: [newExpense, ...existingExpenses.expenses],
         });
-
         toast("Expense created", {
           description: `Successfully created new expenses: ${newExpense.id}`,
         });
-        
       } catch (error) {
         toast("Error", {
           description: "Failed to create new expense",
