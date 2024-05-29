@@ -4,7 +4,6 @@ import { getUser } from "../kinde";
 import {
   expenses as expenseTable,
   insertExpenseSchema,
-  selectExpenseSchema,
 } from "../db/schema/expenses";
 import { db } from "../db";
 import { desc, eq, sum, and } from "drizzle-orm";

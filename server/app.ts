@@ -4,9 +4,12 @@ import { expenseRoute } from "./routes/expenses";
 import { authRoute } from "./routes/auth";
 import { serveStatic } from "hono/bun";
 
-const app = new Hono();
+const app = new Hono().get("/", async (c) => {
+  return c.json({ message: "Hello world" });
+});
 
 app.use("*", logger());
+
 const apiRoutes = app
   .basePath("/api")
   .route("/", authRoute)
