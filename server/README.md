@@ -1,4 +1,8 @@
-# .
+### Tech stack: Bun, Hono, Postgres, DrizzleORM, React, Shadcn, HonoRPC, Kinde, TypeScript
+
+#
+
+Local Setup
 
 To install dependencies:
 
@@ -6,7 +10,29 @@ To install dependencies:
 bun install
 ```
 
+To run the Backend:
+
+```bash
+bun dev
+```
+
+```bash
+mv .env.sample .env
+```
+
+After copying the env, Add the kinde auth credentials And Postgres Db url
+
 To run the Frontend:
+
+```bash
+cd frontend
+```
+
+Install all the frontend dependies
+
+```bash
+bun add
+```
 
 ```bash
 bun dev
